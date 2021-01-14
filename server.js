@@ -6,7 +6,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'dist/angular-task-manager')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/angular-task-managerindex.html'));
+  res.sendFile(path.join(__dirname, 'dist/angular-task-manager.index.html'));
 });
 
 const port = process.env.PORT || 8080;
