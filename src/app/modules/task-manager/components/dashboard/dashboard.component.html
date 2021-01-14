@@ -1,0 +1,12 @@
+<app-search (emittedSearchText)="getSearchText($event)"></app-search>
+<div class="tasks-list flex-row" cdkDropListGroup>
+  <app-task-list
+    *ngFor="let status of statuses"
+    [status]="status"
+    [tasks]="tasks
+      | filterBy:{status: status}
+      | filterBy:routeFilterObj
+      | filterBySearchText:searchFilterObj:false
+    "
+  ></app-task-list>
+</div>

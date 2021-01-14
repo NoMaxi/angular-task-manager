@@ -1,0 +1,40 @@
+$task-item-card-bg-color: aliceblue;
+$item-type-color: darkred;
+$item-priority-color: darkolivegreen;
+$item-summary-color: darkslateblue;
+
+.task-item-card {
+  span {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    font-weight: bold;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    em {
+      color: #49535f;
+      font-size: 1rem;
+      font-weight: normal;
+    }
+  }
+
+  .item-type {
+    color: $item-type-color;
+    font-size: 0.9rem;
+  }
+
+  .item-priority {
+    color: $item-priority-color;
+    font-size: 0.9rem;
+  }
+
+  .item-summary {
+    color: $item-summary-color;
+    font-size: 1.2rem;
+    margin: 3px 0 6px;
+  }
+}
+
+

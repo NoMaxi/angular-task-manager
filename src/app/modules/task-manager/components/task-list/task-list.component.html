@@ -1,0 +1,31 @@
+<div class="list-container">
+  <div *ngIf="status" class="list-inner">
+    <mat-card class="task-item-card text-center">
+      <mat-card-content>
+        <span
+          class="list-title text-bold"
+          matBadgeHidden="{{ !tasks.length }}"
+          matBadge="{{ tasks.length }}"
+          matBadgeOverlap="false"
+        >
+          {{ status }}
+        </span>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div
+    class="list-inner items-list flex-col"
+    [ngClass]="{ 'no-items-list': tasks.length === 0 }"
+    cdkDropList
+    [cdkDropListData]="tasks"
+    (cdkDropListDropped)="onDrop($event)"
+  >
+    <app-task-item
+      class="task-item"
+      *ngFor="let task of tasks"
+      [task]="task"
+      cdkDrag
+    ></app-task-item>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<mat-toolbar class="sidebar">
+  <ul class="flex-col w-100 text-uppercase">
+    <li class="dashboard-item">
+      <a
+        href=""
+        [routerLink]="['/tasks/dashboard']"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="nav-active-link"
+      >
+        <mat-icon
+          class="dashboard-icon"
+          aria-hidden="false"
+          aria-label="dashboard icon"
+        >
+          dashboard
+        </mat-icon>
+        <span>Dashboard</span>
+      </a>
+    </li>
+
+    <li class="my-issues-item">
+      <a
+        href=""
+        [routerLink]="['/tasks/my']"
+        [queryParams]="{ filter: getMyIssuesParamsString() }"
+        [routerLinkActiveOptions]="{ exact: false }"
+        routerLinkActive="nav-active-link"
+      >
+        <mat-icon
+          aria-hidden="false"
+          aria-label="issue icon"
+        >
+          bug_report
+        </mat-icon>
+        <span>My issues</span>
+      </a>
+    </li>
+
+    <li class="assigned-to-me-item">
+      <a
+        href=""
+        [routerLink]="['/tasks/assigned']"
+        [queryParams]="{ filter: getAssignedToMeParamsString() }"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="nav-active-link"
+      >
+        <mat-icon
+          aria-hidden="false"
+          aria-label="issue icon"
+        >
+          bug_report
+        </mat-icon>
+        <span>Assigned to me</span>
+      </a>
+    </li>
+
+    <li class="create-task-item">
+      <a
+        href=""
+        [routerLink]="['/tasks/create']"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="nav-active-link"
+      >
+        <mat-icon
+          class="create-task-icon"
+          aria-hidden="false"
+          aria-label="add task icon"
+        >
+          add_task
+        </mat-icon>
+        <span>Create task</span>
+      </a>
+    </li>
+  </ul>
+</mat-toolbar>
+

@@ -1,0 +1,51 @@
+<form
+  class="flex-col"
+  [formGroup]="loginForm"
+  (ngSubmit)="onLoginSubmit()"
+>
+  <mat-form-field>
+    <input
+      matInput
+      formControlName="email"
+      type="email"
+      placeholder="Email"
+    >
+    <mat-error
+      *ngIf="loginForm.get('email').hasError('pattern')
+      && !loginForm.get('email').hasError('required')">
+      Email is <strong>incorrect</strong>
+    </mat-error>
+    <mat-error *ngIf="loginForm.get('email').hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      formControlName="password"
+      type="password"
+      placeholder="Password"
+    >
+    <mat-error
+      *ngIf="loginForm.get('password').hasError('minlength')
+      && !loginForm.get('password').hasError('required')">
+      Password is <strong>too short</strong>
+    </mat-error>
+    <mat-error *ngIf="loginForm.get('password').hasError('required')">
+      Password is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <div class="form-actions flex-row justify-center">
+    <button
+      mat-raised-button
+      class="btn"
+      name="btn-login"
+      color="primary"
+      [disabled]="loginForm.invalid"
+    >
+      Login
+    </button>
+  </div>
+</form>

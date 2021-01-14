@@ -1,0 +1,42 @@
+$select-flex-basis: 27%;
+
+.mat-card-header .mat-card-header-text .mat-card-title.card-title {
+  margin-top: 20px;
+}
+
+.task-form {
+  padding: 5px 20px;
+}
+
+.select-group {
+  .mat-form-field {
+    flex-basis: $select-flex-basis;
+  }
+}
+
+.editor {
+  position: relative;
+  margin-top: 20px;
+
+  .description-error {
+    position: absolute;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    padding-top: 10px;
+  }
+}
+
+.form-actions {
+  margin-top: 35px;
+}
+
+.mat-raised-button.btn:not(.btn-edit) {
+  min-width: 130px;
+
+  &.btn-delete {
+    margin-left: 20px;
+  }
+
+  &.btn-cancel {
+    margin-left: 50px;
+  }
+}
