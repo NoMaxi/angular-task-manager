@@ -1,0 +1,55 @@
+<mat-toolbar class="toolbar">
+  <div
+    class="toolbar-inner container w-100 mx-auto flex-row justify-between
+           align-center text-uppercase"
+  >
+    <div class="logo">
+      <a
+        class="flex-row align-center"
+        href=""
+        [routerLink]="['tasks/dashboard']"
+      >
+        <img src="../../../../assets/images/logo.svg" alt="logo"/>
+        <span class="max">Max</span>
+        <span class="task">Task</span>
+        <span class="manager">Manager</span>
+      </a>
+    </div>
+
+    <ul class="profile-controls flex-row align-center">
+      <li *ngIf="isLoggedIn">
+        <div class="user-avatar flex-col justify-center align-center">
+          <img
+            class="user-avatar-img"
+            src="../../../../assets/images/user-avatar.png"
+            alt="user-avatar"
+          />
+          <span class="user-avatar-name">{{ user?.name }}</span>
+        </div>
+      </li>
+      <li *ngIf="!isLoggedIn">
+        <a
+          href=""
+          [routerLink]="['auth/login']"
+          routerLinkActive="nav-active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Login
+        </a>
+      </li>
+      <li *ngIf="!isLoggedIn">
+        <a
+          href=""
+          [routerLink]="['auth/register']"
+          routerLinkActive="nav-active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Register
+        </a>
+      </li>
+      <li *ngIf="isLoggedIn">
+        <a href="" (click)="onLogout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</mat-toolbar>

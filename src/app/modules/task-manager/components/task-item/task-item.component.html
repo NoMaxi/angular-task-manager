@@ -1,0 +1,26 @@
+<a
+  class="task-item-link"
+  href=""
+  [routerLink]="['/tasks', task.id]"
+  [state]="{ data: task }"
+>
+  <mat-card class="task-item-card">
+    <mat-card-content>
+      <div class="flex-col">
+        <span class="item-type text-bold text-right">{{ task.type }}</span>
+        <span class="item-priority text-bold text-right">
+          {{ task.priority }}
+        </span>
+        <span class="item-summary text-bold text-center">
+          {{ task.summary }}
+        </span>
+        <span class="item-assignee">
+          <em>Assignee:</em> {{ task.assignee.name }} {{ task.assignee.surname }}
+        </span>
+        <span class="item-due-date">
+          <em>Due date:</em> {{ task.dueDate | date:'dd.MM.yyyy' }}
+        </span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</a>

@@ -1,0 +1,114 @@
+@import '../../../../assets/styles/global-variables';
+
+$toolbar-bg-color: #1a9cb0;
+$link-color: #fff;
+$link-hover-color: #f7f00b;
+$active-link-color: navajowhite;
+$logo-size: 55px;
+$avatar-size: 55px;
+
+.toolbar {
+  background-color: $toolbar-bg-color;
+  height: $header-height;
+
+  &-inner {
+    padding: 10px 20px;
+  }
+
+  .logo {
+    height: $logo-size;
+
+    a {
+      font-style: italic;
+      font-size: 2rem;
+      height: 100%;
+
+      &:hover {
+        img {
+          filter: saturate(5);
+        }
+
+        span {
+          text-shadow: 2px 2px 4px cyan;
+        }
+      }
+    }
+
+    img {
+      max-height: 100%;
+      margin-right: 10px;
+    }
+
+    span {
+      text-shadow: 2px 2px 5px crimson;
+      text-transform: capitalize;
+    }
+
+    .max {
+      color: mintcream;
+    }
+
+    .task {
+      color: darkblue;
+    }
+
+    .manager {
+      color: yellow;
+    }
+  }
+
+  a {
+    color: $link-color;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 0.13rem;
+    transition: 0.2s ease-out;
+
+    &:hover {
+      color: $link-hover-color;
+    }
+  }
+
+  &-nav {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin-left: 50px;
+
+      &:hover {
+        color: $link-hover-color;
+      }
+    }
+  }
+
+  .nav-active-link {
+    color: $active-link-color;
+
+    &:hover {
+      color: $active-link-color;
+    }
+  }
+
+  .profile-controls li {
+    margin-left: 40px;
+  }
+
+  .user-avatar {
+    &-img {
+      border-radius: 50%;
+      height: $avatar-size;
+      width: $avatar-size;
+    }
+
+    &-name {
+      color: antiquewhite;
+      font-size: 1.1rem;
+      text-transform: initial;
+    }
+
+    &:hover span {
+      color: goldenrod;
+    }
+  }
+}

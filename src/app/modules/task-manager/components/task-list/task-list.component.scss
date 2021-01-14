@@ -1,0 +1,44 @@
+@import '../../../../../assets/styles/global-variables';
+
+.list-container {
+  padding: 10px;
+
+  .task-item-card {
+    background-color: $task-list-title-bg-color;
+  }
+
+  .list-title {
+    color: darkslategrey;
+    font-size: 1.3rem;
+  }
+
+  .list-inner {
+    background-color: $task-list-bg-color;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &.items-list {
+      min-height: 140px;
+    }
+
+    &.no-items-list {
+      background-color: transparent;
+    }
+  }
+
+  app-task-item {
+    margin-bottom: 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+

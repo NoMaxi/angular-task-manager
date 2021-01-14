@@ -1,0 +1,59 @@
+$list-item-border: 1px solid grey;
+$link-color: darkslateblue;
+$link-hover-color: #389279;
+$active-link-color: #7e1daf;
+$active-link-bg-color: #eee8aa;
+$mat-icon-color: dimgray;
+
+.sidebar {
+  background-color: unset;
+  padding: 40px 25px;
+
+  li {
+    border-top: $list-item-border;
+
+    &:last-child {
+      border-bottom: $list-item-border;
+    }
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    color: $link-color;
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 0.13rem;
+    line-height: 2.8;
+    padding: 0 10px;
+    transition: 0.2s ease-out;
+    width: 100%;
+
+    &:hover {
+      color: $link-hover-color;
+    }
+
+    .material-icons {
+      color: $mat-icon-color;
+      margin: 0 8px 1px 0;
+
+      &.dashboard-icon {
+        color: cornflowerblue;
+      }
+
+      &.create-task-icon {
+        color: darkred;
+      }
+    }
+  }
+
+  .nav-active-link {
+    background-color: $active-link-bg-color;
+    color: $active-link-color;
+    font-weight: bold;
+
+    &:hover {
+      color: $active-link-color;
+    }
+  }
+}

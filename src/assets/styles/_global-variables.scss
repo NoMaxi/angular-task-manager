@@ -1,0 +1,15 @@
+$base-font-family: 'Ubuntu', sans-serif;
+$base-box-shadow:
+  3px 3px 5px 3px rgba(0, 0, 0, 0.2),
+  0 1px 1px 0 rgba(0, 0, 0, 0.14),
+  0 1px 3px 0 rgba(0, 0, 0, 0.12);
+$base-title-shadow: 1px 1px 2px darkblue;
+$base-card-bg-color: cornsilk;
+$task-list-bg-color: #ece6e6;
+$task-list-title-bg-color: #e8d4e8;
+$task-item-card-bg-color: aliceblue;
+$header-height: 100px;
+$cdk-drag-preview-box-shadow:
+  0 5px 5px -3px rgba(0, 0, 0, 0.2),
+  0 8px 10px 1px rgba(0, 0, 0, 0.14),
+  0 3px 14px 2px rgba(0, 0, 0, 0.12);

@@ -1,0 +1,180 @@
+<mat-card-header class="justify-center">
+  <mat-card-title class="card-title text-bold text-capitalize">
+    {{ isBeingEdited ? 'Edit task' : 'Task information' }}
+  </mat-card-title>
+</mat-card-header>
+
+<form
+  class="task-form flex-col"
+  [formGroup]="editTaskForm"
+  (ngSubmit)="onUpdateSubmit()"
+>
+  <mat-form-field>
+    <input
+      matInput
+      formControlName="summary"
+      type="text"
+      placeholder="Summary"
+      required
+    >
+    <mat-error *ngIf="editTaskForm.get('summary').hasError('required')">
+      Summary is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <div class="select-group flex-row justify-between">
+    <mat-form-field>
+      <mat-label>Issue type</mat-label>
+      <mat-select formControlName="type" required>
+        <mat-option *ngFor="let type of types" [value]="type">
+          {{ type }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="editTaskForm.get('type').hasError('required')">
+        Issue type is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Priority</mat-label>
+      <mat-select formControlName="priority" required>
+        <mat-option *ngFor="let priority of priorities" [value]="priority">
+          {{ priority }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="editTaskForm.get('priority').hasError('required')">
+        Issue priority is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status" required>
+        <mat-option *ngFor="let status of statuses" [value]="status">
+          {{ status }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="editTaskForm.get('status').hasError('required')">
+        Status is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="select-group flex-row justify-between">
+    <mat-form-field>
+      <mat-label>Assignee</mat-label>
+      <mat-select
+        formControlName="assignee"
+        [compareWith]="compareUsers"
+        required
+      >
+        <mat-option
+          *ngFor="let assignee of users | sortBy:'asc':'name'"
+          [value]="assignee"
+        >
+          {{ assignee.name }} {{ assignee.surname }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="editTaskForm.get('assignee').hasError('required')">
+        Assignee is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Reporter</mat-label>
+      <mat-select
+        formControlName="reporter"
+        [compareWith]="compareUsers"
+        required
+      >
+        <mat-option
+          *ngFor="let reporter of users | sortBy:'asc':'name'"
+          [value]="reporter"
+        >
+          {{ reporter.name }} {{ reporter.surname }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="editTaskForm.get('reporter').hasError('required')">
+        Reporter is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Due date</mat-label>
+      <input
+        matInput
+        formControlName="dueDate"
+        [matDatepicker]="picker"
+        [min]="minDate"
+        required
+      >
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="editTaskForm.get('dueDate').hasError('required')">
+        Due date is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="editor">
+    <quill-editor
+      #editor
+      formControlName="descriptionHTML"
+      class="content-editor"
+      [placeholder]="''"
+    ></quill-editor>
+    <mat-error
+      *ngIf="editTaskForm.get('descriptionHTML').hasError('required')
+        && editTaskForm.get('descriptionHTML').touched"
+      class="description-error mat-error"
+    >
+      Description is <strong>required</strong>
+    </mat-error>
+  </div>
+
+  <div class="form-actions flex-row justify-center">
+    <button
+      *ngIf="!isBeingEdited"
+      mat-raised-button
+      class="btn btn-edit"
+      name="btn-edit-task"
+      color="warn"
+      (click)="setTaskEditable($event)"
+    >
+      Edit task
+    </button>
+
+    <div *ngIf="isBeingEdited" class="edit-buttons">
+      <button
+        mat-raised-button
+        class="btn btn-update"
+        name="btn-update-task"
+        color="primary"
+        [disabled]="editTaskForm.invalid"
+      >
+        Update
+      </button>
+      <button
+        mat-raised-button
+        class="btn btn-delete"
+        name="btn-delete-task"
+        color="warn"
+        (click)="onDeleteSubmit($event)"
+      >
+        Delete
+      </button>
+      <button
+        mat-raised-button
+        class="btn btn-cancel"
+        name="btn-cancel-task"
+        color="accent"
+        (click)="onCancel($event)"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</form>
+
+
+

@@ -1,0 +1,20 @@
+@import '../../../../../assets/styles/global-variables';
+
+$container-bg-color: ghostwhite;
+$sidebar-bg-color: lightcyan;
+
+mat-drawer-container {
+  background-color: $container-bg-color;
+  box-shadow: $base-box-shadow;
+  min-height: calc(100vh - #{$header-height});
+}
+
+mat-drawer {
+  background-color: $sidebar-bg-color;
+  width: 275px;
+}
+
+mat-drawer-content {
+  overflow: unset;
+  padding: 15px;
+}

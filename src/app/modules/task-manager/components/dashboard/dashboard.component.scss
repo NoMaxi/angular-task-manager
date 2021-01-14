@@ -1,0 +1,8 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+app-task-list {
+  flex-basis: 33.3%;
+}

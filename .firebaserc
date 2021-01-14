@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angular-task-manager-d99eb": {
+      "hosting": {
+        "angular-task-manager": [
+          "angular-task-manager-d99eb"
+        ]
+      }
+    }
+  }
+}

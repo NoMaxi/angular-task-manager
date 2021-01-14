@@ -1,1 +1,240 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import 'assets/styles/global-variables';
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  background: url('assets/images/bg.jpg') #fff center/cover no-repeat;
+  color: #051120;
+  font-family: $base-font-family;
+}
+
+.container {
+  max-width: 1400px;
+}
+
+.section {
+  padding: 30px 0;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.w-80 {
+  width: 80%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.mx-auto {
+  margin: 0 auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.mat-toolbar-single-row {
+  height: unset;
+}
+
+mat-card.mat-card {
+  background-color: $base-card-bg-color;
+  border-radius: 6px;
+  font-family: $base-font-family;
+  font-size: 1.2rem;
+  padding: 30px;
+
+  &.card {
+    padding: 20px 40px 25px;
+  }
+
+  &.task-item-card {
+    background-color: $task-item-card-bg-color;
+    border-radius: 3px;
+    padding: 10px;
+  }
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+  box-shadow: $base-box-shadow;
+}
+
+.mat-card-header-text {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-card-header .mat-card-header-text .mat-card-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: $base-title-shadow;
+  text-transform: capitalize;
+  margin-bottom: 0;
+
+  &.card-title {
+    color: darkslateblue;
+    font-size: 2rem;
+  }
+}
+
+.mat-form-field {
+  font-size: 1.3rem;
+
+  input.mat-input-element, .mat-select-value-text {
+    color: darkred;
+  }
+}
+
+.mat-error strong {
+  font-weight: bold;
+  color: red;
+}
+
+.form-actions {
+  margin-top: 10px;
+
+  &-social {
+    margin-top: 32px;
+  }
+}
+
+.mat-raised-button.btn {
+  box-shadow: $base-box-shadow;
+  font-size: 1.3rem;
+  letter-spacing: 0.13rem;
+  min-height: 45px;
+  min-width: 160px;
+
+  &:hover {
+    filter: saturate(3);
+  }
+
+  .mat-button-wrapper {
+    color: #fff;
+  }
+
+  &.btn-social {
+    flex-basis: 44%;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    min-height: 40px;
+
+    .mat-button-wrapper::before {
+      content: '\00a0\00a0\00a0\00a0';
+    }
+
+    &.btn-facebook {
+      background-color: #3a5a97;
+
+      .mat-button-wrapper::before {
+        background: url('assets/images/logo-facebook.png') no-repeat;
+      }
+    }
+
+    &.btn-google {
+      background-color: #8b0000;
+
+      .mat-button-wrapper::before {
+        background: url('assets/images/logo-google.svg') no-repeat;
+      }
+    }
+  }
+}
+
+.ql-editor {
+  background-color: #f5f0f0;
+  min-height: 180px;
+
+  p {
+    font-size: 1.2rem;
+  }
+}
+
+.cdk-drag-preview {
+  border-radius: 3px;
+  box-shadow: $cdk-drag-preview-box-shadow;
+}
+
+.cdk-drag-placeholder {
+  border: 1px dashed darkslateblue;
+
+  mat-card.mat-card.task-item-card {
+    background-color: rgba(150, 150, 200, 0.1);
+
+    mat-card-content {
+      opacity: 0;
+    }
+  }
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drop-list-dragging {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+
+  .cdk-drag:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+}
