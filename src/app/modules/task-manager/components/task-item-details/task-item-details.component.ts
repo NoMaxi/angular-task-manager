@@ -100,6 +100,17 @@ export class TaskItemDetailsComponent implements OnInit, OnDestroy {
     this.editTaskForm.enable();
   }
 
+  assignCurrentUser(event: Event, userType: string): void {
+    event.preventDefault();
+    this.editTaskForm.get(userType)
+      .setValue(this.currentUserStoreService.data);
+  }
+
+  setCurrentDate(event: Event): void {
+    event.preventDefault();
+    this.editTaskForm.get('dueDate').setValue(new Date());
+  }
+
   onUpdateSubmit(): void {
     const updatedTaskData: Partial<Task> = {
       ...this.editTaskForm.getRawValue(),

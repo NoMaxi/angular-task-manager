@@ -12,15 +12,36 @@ $select-flex-basis: 27%;
   .mat-form-field {
     flex-basis: $select-flex-basis;
   }
+
+  .select-group-item {
+    flex-basis: $select-flex-basis;
+
+    span {
+      color: #551a8b;
+      cursor: pointer;
+      font-size: 1.1rem;
+
+      &:hover {
+        color: brown;
+        transition: 0.25s ease-in;
+      }
+    }
+  }
 }
 
-.editor {
+.description {
   position: relative;
-  margin-top: 20px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin-top: 25px;
 
-  .description-error {
+  &-title {
+    color: #888787;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  &-error {
     position: absolute;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
     padding-top: 10px;
   }
 }

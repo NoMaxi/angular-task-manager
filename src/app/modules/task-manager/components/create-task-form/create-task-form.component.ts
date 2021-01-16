@@ -9,6 +9,7 @@ import {
   types,
   statuses
 } from '../../../../shared/interfaces/task';
+import { compareUsers } from '../../../../shared/helpers/compareUsers';
 import { User } from '../../../../shared/interfaces/user';
 import { Task } from '../../../../shared/interfaces/task';
 import { MessageService } from '../../../../shared/services/message.service';
@@ -26,6 +27,7 @@ export class CreateTaskFormComponent implements OnInit {
   priorities: string[] = [...priorities];
   types: string[] = [...types];
   statuses: string[] = [...statuses];
+  compareUsers: (user1: User, user2: User) => boolean = compareUsers;
   createTaskForm: FormGroup;
   minDate: Date;
   users$: Observable<User[]>;
@@ -54,6 +56,17 @@ export class CreateTaskFormComponent implements OnInit {
       dueDate: new FormControl('', Validators.required),
       descriptionHTML: new FormControl('', Validators.required)
     });
+  }
+
+  assignCurrentUser(event: Event, userType: string): void {
+    event.preventDefault();
+    this.createTaskForm.get(userType)
+      .setValue(this.currentUserStoreService.data);
+  }
+
+  setCurrentDate(event: Event): void {
+    event.preventDefault();
+    this.createTaskForm.get('dueDate').setValue(new Date());
   }
 
   onCreateSubmit(): void {
