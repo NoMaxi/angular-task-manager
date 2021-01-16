@@ -9,8 +9,11 @@ import { Task } from 'src/app/shared/interfaces/task';
 })
 export class TaskItemComponent implements OnInit {
   @Input() task: Task;
+  hasDueDateExpired = false;
 
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.hasDueDateExpired = Date.parse(this.task.dueDate) < Date.now();
+  }
 }
