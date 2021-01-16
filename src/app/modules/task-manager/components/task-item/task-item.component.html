@@ -2,7 +2,6 @@
   class="task-item-link"
   href=""
   [routerLink]="['/tasks', task.id]"
-  [state]="{ data: task }"
 >
   <mat-card class="task-item-card">
     <mat-card-content>
@@ -17,7 +16,9 @@
         <span class="item-assignee">
           <em>Assignee:</em> {{ task.assignee.name }} {{ task.assignee.surname }}
         </span>
-        <span class="item-due-date">
+        <span
+          class="item-due-date"
+          [ngClass]="{ 'expired-date': hasDueDateExpired }">
           <em>Due date:</em> {{ task.dueDate | date:'dd.MM.yyyy' }}
         </span>
       </div>
