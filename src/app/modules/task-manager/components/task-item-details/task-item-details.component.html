@@ -61,62 +61,90 @@
   </div>
 
   <div class="select-group flex-row justify-between">
-    <mat-form-field>
-      <mat-label>Assignee</mat-label>
-      <mat-select
-        formControlName="assignee"
-        [compareWith]="compareUsers"
-        required
-      >
-        <mat-option
-          *ngFor="let assignee of users | sortBy:'asc':'name'"
-          [value]="assignee"
+    <div class="select-group-item flex-col">
+      <mat-form-field>
+        <mat-label>Assignee</mat-label>
+        <mat-select
+          formControlName="assignee"
+          [compareWith]="compareUsers"
+          required
         >
-          {{ assignee.name }} {{ assignee.surname }}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="editTaskForm.get('assignee').hasError('required')">
-        Assignee is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
+          <mat-option
+            *ngFor="let assignee of users | sortBy:'asc':'name'"
+            [value]="assignee"
+          >
+            {{ assignee.name }} {{ assignee.surname }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="editTaskForm.get('assignee').hasError('required')">
+          Assignee is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <p>
+        <span
+          [class.disabled]="!isBeingEdited"
+          (click)="isBeingEdited && assignCurrentUser($event, 'assignee')">
+          Assign to me
+        </span>
+      </p>
+    </div>
 
-    <mat-form-field>
-      <mat-label>Reporter</mat-label>
-      <mat-select
-        formControlName="reporter"
-        [compareWith]="compareUsers"
-        required
-      >
-        <mat-option
-          *ngFor="let reporter of users | sortBy:'asc':'name'"
-          [value]="reporter"
+    <div class="select-group-item flex-col">
+      <mat-form-field>
+        <mat-label>Reporter</mat-label>
+        <mat-select
+          formControlName="reporter"
+          [compareWith]="compareUsers"
+          required
         >
-          {{ reporter.name }} {{ reporter.surname }}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="editTaskForm.get('reporter').hasError('required')">
-        Reporter is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
+          <mat-option
+            *ngFor="let reporter of users | sortBy:'asc':'name'"
+            [value]="reporter"
+          >
+            {{ reporter.name }} {{ reporter.surname }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="editTaskForm.get('reporter').hasError('required')">
+          Reporter is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <p>
+        <span
+          [class.disabled]="!isBeingEdited"
+          (click)="isBeingEdited && assignCurrentUser($event, 'reporter')">
+          Make me reporter
+        </span>
+      </p>
+    </div>
 
-    <mat-form-field>
-      <mat-label>Due date</mat-label>
-      <input
-        matInput
-        formControlName="dueDate"
-        [matDatepicker]="picker"
-        [min]="minDate"
-        required
-      >
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-      <mat-error *ngIf="editTaskForm.get('dueDate').hasError('required')">
-        Due date is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
+    <div class="select-group-item flex-col">
+      <mat-form-field>
+        <mat-label>Due date</mat-label>
+        <input
+          matInput
+          formControlName="dueDate"
+          [matDatepicker]="picker"
+          [min]="minDate"
+          required
+        >
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="editTaskForm.get('dueDate').hasError('required')">
+          Due date is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <p>
+        <span
+          [class.disabled]="!isBeingEdited"
+          (click)="isBeingEdited && setCurrentDate($event)">
+          Set current date
+        </span>
+      </p>
+    </div>
   </div>
 
-  <div class="editor">
+  <div class="description">
+    <p class="description-title">Description *</p>
     <quill-editor
       #editor
       formControlName="descriptionHTML"
