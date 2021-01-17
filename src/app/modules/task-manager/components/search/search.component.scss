@@ -1,9 +1,24 @@
+$search-flex-basis: 68.2%;
+
 .search-container {
   margin-bottom: -5px;
   padding: 0 30px;
-}
 
-.btn-search {
-  color: cornflowerblue;
-  margin-right: 7px;
+  .search-input {
+    flex-basis: $search-flex-basis;
+  }
+
+  .btn-search {
+    color: cornflowerblue;
+    margin-right: 7px;
+  }
+
+  .btn-cancel-filter {
+    color: darkcyan;
+  }
+
+  .select-filters {
+    flex-basis: calc(100% - #{$search-flex-basis});
+    margin-left: 20px;
+  }
 }

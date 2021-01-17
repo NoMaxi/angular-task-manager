@@ -1,4 +1,7 @@
-<app-search (emittedSearchText)="getSearchText($event)"></app-search>
+<app-search
+  (emittedSelectedUser)="getAssigneeFilter($event)"
+  (emittedSearchText)="getSearchText($event)"
+></app-search>
 <div class="tasks-list flex-row" cdkDropListGroup>
   <app-task-list
     *ngFor="let status of statuses"
@@ -6,6 +9,7 @@
     [tasks]="tasks
       | filterBy:{status: status}
       | filterBy:routeFilterObj
+      | filterBy:userFilterObj
       | filterBySearchText:searchFilterObj:false
     "
   ></app-task-list>
