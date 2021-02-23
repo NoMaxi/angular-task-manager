@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import {
   priorities,
   types,
-  statuses
+  statuses,
 } from '../../../../shared/interfaces/task';
 import { compareUsers } from '../../../../shared/helpers/compareUsers';
 import { User } from '../../../../shared/interfaces/user';
@@ -19,7 +19,7 @@ import { TaskService } from '../../../../shared/services/task.service';
 @Component({
   selector: 'app-task-item-details',
   templateUrl: './task-item-details.component.html',
-  styleUrls: ['./task-item-details.component.scss']
+  styleUrls: ['./task-item-details.component.scss'],
 })
 export class TaskItemDetailsComponent implements OnInit, OnDestroy {
   @ViewChild('editor', { static: true }) editor;
@@ -42,7 +42,7 @@ export class TaskItemDetailsComponent implements OnInit, OnDestroy {
     private currentUserStoreService: CurrentUserStoreService,
     private userService: UserService,
     private taskService: TaskService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.minDate = new Date();
@@ -54,10 +54,17 @@ export class TaskItemDetailsComponent implements OnInit, OnDestroy {
       assignee: new FormControl('', Validators.required),
       reporter: new FormControl('', Validators.required),
       dueDate: new FormControl('', Validators.required),
-      descriptionHTML: new FormControl('', Validators.required)
+      descriptionHTML: new FormControl('', Validators.required),
     });
     this.editTaskForm.disable();
+    this.setSubscriptions();
+  }
 
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  setSubscriptions(): void {
     const sub1: Subscription = this.userService.getUsers().subscribe(
       (users: User[]) => {
         if (users) {
@@ -79,7 +86,7 @@ export class TaskItemDetailsComponent implements OnInit, OnDestroy {
             assignee: task.assignee,
             reporter: task.reporter,
             dueDate: task.dueDate,
-            descriptionHTML: task.descriptionHTML
+            descriptionHTML: task.descriptionHTML,
           });
           this.initialTaskFormValue = this.editTaskForm.value;
         }
@@ -90,10 +97,6 @@ export class TaskItemDetailsComponent implements OnInit, OnDestroy {
     this.subscription.add(sub2);
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-
   setTaskEditable(event: Event): void {
     event.preventDefault();
     this.isBeingEdited = true;
@@ -102,8 +105,7 @@ export class TaskItemDetailsComponent implements OnInit, OnDestroy {
 
   assignCurrentUser(event: Event, userType: string): void {
     event.preventDefault();
-    this.editTaskForm.get(userType)
-      .setValue(this.currentUserStoreService.data);
+    this.editTaskForm.get(userType).setValue(this.currentUserStoreService.data);
   }
 
   setCurrentDate(event: Event): void {
@@ -116,13 +118,16 @@ export class TaskItemDetailsComponent implements OnInit, OnDestroy {
       ...this.editTaskForm.getRawValue(),
       updatedAt: new Date().toISOString(),
       dueDate: new Date(this.editTaskForm.get('dueDate').value).toISOString(),
-      description: this.editor.quillEditor.getText()
+      description: this.editor.quillEditor.getText(),
     };
-    this.taskService.updateTaskById(this.task.id, updatedTaskData)
+    this.taskService
+      .updateTaskById(this.task.id, updatedTaskData)
       .then(() => this.router.navigate(['tasks/dashboard']))
-      .then(() => this.messageService.showSuccess(
-        `${updatedTaskData.type} has been updated`
-      ))
+      .then(() =>
+        this.messageService.showSuccess(
+          `${updatedTaskData.type} has been updated`
+        )
+      )
       .catch((err) => {
         console.error(err);
         this.messageService.showError(err.message);
@@ -132,11 +137,12 @@ export class TaskItemDetailsComponent implements OnInit, OnDestroy {
   onDeleteSubmit(event: Event): void {
     event.preventDefault();
     if (confirm(`Are you sure you want to delete this ${this.task.type}?`)) {
-      this.taskService.deleteTaskById(this.task.id)
+      this.taskService
+        .deleteTaskById(this.task.id)
         .then(() => this.router.navigate(['tasks/dashboard']))
-        .then(() => this.messageService.showSuccess(
-          `${this.task.type} has been deleted`
-        ))
+        .then(() =>
+          this.messageService.showSuccess(`${this.task.type} has been deleted`)
+        )
         .catch((err) => {
           console.error(err);
           this.messageService.showError(err.message);
