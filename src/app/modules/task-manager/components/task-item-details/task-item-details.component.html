@@ -1,6 +1,6 @@
 <mat-card-header class="justify-center">
   <mat-card-title class="card-title text-bold text-capitalize">
-    {{ isBeingEdited ? 'Edit task' : 'Task information' }}
+    {{ isBeingEdited ? "Edit task" : "Task information" }}
   </mat-card-title>
 </mat-card-header>
 
@@ -16,7 +16,7 @@
       type="text"
       placeholder="Summary"
       required
-    >
+    />
     <mat-error *ngIf="editTaskForm.get('summary').hasError('required')">
       Summary is <strong>required</strong>
     </mat-error>
@@ -70,7 +70,7 @@
           required
         >
           <mat-option
-            *ngFor="let assignee of users | sortBy:'asc':'name'"
+            *ngFor="let assignee of users | sortBy: 'asc':'name'"
             [value]="assignee"
           >
             {{ assignee.name }} {{ assignee.surname }}
@@ -83,7 +83,8 @@
       <p>
         <span
           [class.disabled]="!isBeingEdited"
-          (click)="isBeingEdited && assignCurrentUser($event, 'assignee')">
+          (click)="isBeingEdited && assignCurrentUser($event, 'assignee')"
+        >
           Assign to me
         </span>
       </p>
@@ -98,7 +99,7 @@
           required
         >
           <mat-option
-            *ngFor="let reporter of users | sortBy:'asc':'name'"
+            *ngFor="let reporter of users | sortBy: 'asc':'name'"
             [value]="reporter"
           >
             {{ reporter.name }} {{ reporter.surname }}
@@ -111,7 +112,8 @@
       <p>
         <span
           [class.disabled]="!isBeingEdited"
-          (click)="isBeingEdited && assignCurrentUser($event, 'reporter')">
+          (click)="isBeingEdited && assignCurrentUser($event, 'reporter')"
+        >
           Make me reporter
         </span>
       </p>
@@ -126,17 +128,26 @@
           [matDatepicker]="picker"
           [min]="minDate"
           required
-        >
+        />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-error *ngIf="editTaskForm.get('dueDate').hasError('required')">
           Due date is <strong>required</strong>
         </mat-error>
+        <mat-error
+          *ngIf="
+            editTaskForm.get('dueDate').hasError('matDatepickerMin') &&
+            !editTaskForm.get('dueDate').hasError('required')
+          "
+        >
+          Due date is <strong>incorrect</strong>
+        </mat-error>
       </mat-form-field>
       <p>
         <span
           [class.disabled]="!isBeingEdited"
-          (click)="isBeingEdited && setCurrentDate($event)">
+          (click)="isBeingEdited && setCurrentDate($event)"
+        >
           Set current date
         </span>
       </p>
@@ -152,8 +163,10 @@
       [placeholder]="''"
     ></quill-editor>
     <mat-error
-      *ngIf="editTaskForm.get('descriptionHTML').hasError('required')
-        && editTaskForm.get('descriptionHTML').touched"
+      *ngIf="
+        editTaskForm.get('descriptionHTML').hasError('required') &&
+        editTaskForm.get('descriptionHTML').touched
+      "
       class="description-error mat-error"
     >
       Description is <strong>required</strong>
@@ -203,6 +216,3 @@
     </div>
   </div>
 </form>
-
-
-
